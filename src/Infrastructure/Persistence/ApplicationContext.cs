@@ -1,20 +1,42 @@
 ﻿using System;
 using Domain.Entities;
+using Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
+using Attribute = Domain.Entities.Attribute;
 
 namespace Infrastructure.Persistence
 {
     /// <summary>
     /// Application context
     /// </summary>
-    public class ApplicationContext : DbContext 
+    public class AniHelpDbContext : DbContext
     {
-        // Anime entities.
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="options"></param>
+        public AniHelpDbContext(DbContextOptions<AniHelpDbContext> options)
+            : base(options) { }
+
+
+        // Entities.
         public DbSet<Anime> Animes { get; set; }
+        public DbSet<Attribute> Attributes { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Link> Links { get; set; }
+        public DbSet<RatingFrequencie> RatingFrequencies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder = modelBuilder ?? throw new ArgumentNullException(nameof(modelBuilder));
+
+            modelBuilder.ApplyConfiguration(new AnimeConfiguration());
+            modelBuilder.ApplyConfiguration(new AttributesConfiguration());
+            modelBuilder.ApplyConfiguration(new RatingFrequenciesConfiguration());
+            modelBuilder.ApplyConfiguration(new SizeConfiguration());
+            modelBuilder.ApplyConfiguration(new ImageConfiguration());
+            modelBuilder.ApplyConfiguration(new LinkConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
