@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Infrastructure;
 
 namespace Web
 {
@@ -24,8 +25,7 @@ namespace Web
         {
             services.AddControllers();
 
-            // Database context
-            services.AddDbContext<AniHelpDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MSSQLConnection")));
+            services.AddInfrastructure(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

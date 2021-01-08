@@ -1,4 +1,5 @@
 ﻿using System;
+using Application.Common.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ namespace Infrastructure.Persistence
     /// <summary>
     /// Application context
     /// </summary>
-    public class AniHelpDbContext : DbContext
+    public class AniHelpDbContext : DbContext , IAniHelpDbContext
     {
         /// <summary>
         /// Constructor.
