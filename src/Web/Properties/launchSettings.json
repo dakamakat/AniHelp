@@ -20,7 +20,7 @@
     "Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "AniHelp",
+      "launchUrl": "",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

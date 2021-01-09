@@ -1,13 +1,12 @@
 ﻿using System;
-using Infrastructure.Persistence;
+using Application;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
-using Infrastructure;
 
 namespace Web
 {
@@ -24,6 +23,8 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddApplication();
 
             services.AddInfrastructure(Configuration);
         }
