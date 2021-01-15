@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Application.Common.Models
+namespace Infrastructure.Services.KitsuApiService.Contracts
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
-    public class Links
+    public class Links 
     {
         [JsonProperty("self")]
         public string Self { get; set; }

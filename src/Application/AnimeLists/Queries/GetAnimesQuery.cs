@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
-using Flurl;
-using Flurl.Http;
+using Application.Common.Interfaces;
 using Application.Common.Models;
-using Application.Common.Constants;
-using static Application.Common.Models.AnimeProductions;
+using MediatR;
 
 namespace Application.AnimeLists.Queries
 {
-    public class GetAnimesQuery : IRequest<AnimeList>
+    public class GetAnimesQuery : IRequest<AnimeListDto>
     {
     }
-    public class GetAnimesQueryHandler : IRequestHandler<GetAnimesQuery , AnimeList>
+    public class GetAnimesQueryHandler : IRequestHandler<GetAnimesQuery, AnimeListDto>
     {
 
-        //TODO define a class (T above) that matches the shape of the expected JSON response.
-        public async Task<AnimeList> Handle(GetAnimesQuery request, CancellationToken cancellationToken)
+        private readonly IRequestService<AnimeListDto> _requestService;
+
+        public GetAnimesQueryHandler(IRequestService<AnimeListDto> requestService, IAniHelpDbContext dbContext)
         {
-            var url = Constants.BaseUrl.AppendPathSegment("/anime");
-            var result = await url.GetJsonAsync<AnimeList>();
-            return result;
+            _requestService = requestService;
+        }
+
+        public async Task<AnimeListDto> Handle(GetAnimesQuery request, CancellationToken cancellationToken)
+        {
+            return await _requestService.GetListOfAnime();
         }
     }
 }
