@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Constants
+﻿namespace Infrastructure.Persistence.Constants
 {
     /// <summary>
     /// Table constants.
@@ -34,5 +34,10 @@
         /// Links.
         /// </summary>
         public const string Links = nameof(Links);
+
+        /// <summary>
+        /// Users.
+        /// </summary>
+        public const string Users = nameof(Users);
     }
 }

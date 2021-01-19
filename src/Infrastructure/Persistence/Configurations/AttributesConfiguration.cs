@@ -1,12 +1,13 @@
 ﻿using System;
 using Domain.Entities;
-using Infrastructure.Constants;
+using Infrastructure.Persistence.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Attribute = Domain.Entities.Attribute;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class AttributesConfiguration : IEntityTypeConfiguration<Domain.Entities.Attribute>
+    public class AttributesConfiguration : IEntityTypeConfiguration<Attribute>
     {
         public void Configure(EntityTypeBuilder<Domain.Entities.Attribute> builder)
         {

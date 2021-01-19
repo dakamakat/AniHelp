@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Infrastructure.Constants
+namespace Infrastructure.Persistence.Constants
 {
     public class ConfigurationContants
     {

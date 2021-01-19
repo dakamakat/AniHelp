@@ -1,6 +1,6 @@
 ﻿using System;
 using Domain.Entities;
-using Infrastructure.Constants;
+using Infrastructure.Persistence.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Attribute = Domain.Entities.Attribute;
@@ -37,6 +37,16 @@ namespace Infrastructure.Persistence.Configurations
                .WithOne(relationship => relationship.Anime)
                .HasForeignKey(relationship => relationship.AnimeId)
                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(anime => anime.Users)
+                .WithMany(user => user.Animes)
+                .UsingEntity<UsersAnime>(
+                    userAnime => userAnime.HasOne(pt => pt.User)
+                    .WithMany(t => t.UsersAnime)
+                    .HasForeignKey(pt => pt.UserId),
+                    userAnime => userAnime.HasOne(pt => pt.Anime)
+                    .WithMany(t => t.UsersAnimes)
+                    .HasForeignKey(pt => pt.AnimeId));
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using Application.Common.Interfaces;
 using Domain.Entities;
+using Infrastructure.Identity;
 using Infrastructure.Persistence.Configurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Attribute = Domain.Entities.Attribute;
 
@@ -10,7 +12,7 @@ namespace Infrastructure.Persistence
     /// <summary>
     /// Application context
     /// </summary>
-    public class AniHelpDbContext : DbContext , IAniHelpDbContext
+    public class AniHelpDbContext : IdentityDbContext<ApplicationUser> , IAniHelpDbContext
     {
         /// <summary>
         /// Constructor.
