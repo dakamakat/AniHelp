@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<AppUser>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder = builder ?? throw new ArgumentNullException(nameof(builder));
 
-            builder.ToTable(TableConstants.Users)
+            builder.ToTable(TableConstants.AppUsers)
              .HasKey(users => users.Id);
         }
     }

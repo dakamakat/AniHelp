@@ -38,6 +38,6 @@
         /// <summary>
         /// Users.
         /// </summary>
-        public const string Users = nameof(Users);
+        public const string AppUsers = nameof(AppUsers);
     }
 }

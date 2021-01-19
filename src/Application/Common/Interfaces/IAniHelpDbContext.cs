@@ -12,5 +12,6 @@ namespace Application.Common.Interfaces
         public DbSet<Image> Images { get; set; }
         public DbSet<Link> Links { get; set; }
         public DbSet<RatingFrequencie> RatingFrequencies { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
     }
 }

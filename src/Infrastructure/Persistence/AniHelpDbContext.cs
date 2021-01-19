@@ -24,6 +24,7 @@ namespace Infrastructure.Persistence
 
         // Entities.
         public DbSet<Anime> Animes { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
         public DbSet<Attribute> Attributes { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Image> Images { get; set; }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Entities
 {
-    public class User
+    public class AppUser
     {
         public string Id { get; set; }
         public ICollection<Anime> Animes { get; set; }
