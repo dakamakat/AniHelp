@@ -20,7 +20,7 @@ namespace Infrastructure
 
             services.AddScoped<IAniHelpDbContext>(provider => provider.GetService<AniHelpDbContext>());
 
-            services.AddScoped<IRequestService<AnimeListDto>, KitsuApiRequestService>();
+            services.AddScoped<IRequestService<AnimeListKitsu>, KitsuApiRequestService>();
 
             return services;
         }

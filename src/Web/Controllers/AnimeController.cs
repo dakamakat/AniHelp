@@ -14,7 +14,7 @@ namespace Web.Controllers
         [HttpGet]
         public async Task<ActionResult<AnimeList>> Get()
         {
-            return Ok(await Mediator.Send(new GetAnimesQuery()));
+            return Ok(await Mediator.Send(new GetAnimeListQuery()));
         }
     }
 }
