@@ -1,7 +1,5 @@
 ﻿using Application.Common.Interfaces;
-using Application.Common.Models;
 using Infrastructure.Persistence;
-using Infrastructure.Services.KitsuApiService;
 using Infrastructure.Services.KitsuApiService.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +18,7 @@ namespace Infrastructure
 
             services.AddScoped<IAniHelpDbContext>(provider => provider.GetService<AniHelpDbContext>());
 
-            services.AddScoped<IRequestService<AnimeListKitsu>, KitsuApiRequestService>();
+            services.AddScoped<IKistuRequestService, KitsuApiRequestService>();
 
             return services;
         }

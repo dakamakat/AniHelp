@@ -6,22 +6,22 @@ using MediatR;
 
 namespace Application.AnimeLists.Queries
 {
-    public class GetAnimeListQuery : IRequest<AnimeListKitsu>
+    public class GetAnimeListQuery : IRequest<AnimeList>
     {
     }
-    public class GetAnimeListQueryHandler : IRequestHandler<GetAnimeListQuery, AnimeListKitsu>
+    public class GetAnimeListQueryHandler : IRequestHandler<GetAnimeListQuery, AnimeList>
     {
 
-        private readonly IRequestService<AnimeListKitsu> _requestService;
+        private readonly IKistuRequestService _requestService;
 
-        public GetAnimeListQueryHandler(IRequestService<AnimeListKitsu> requestService, IAniHelpDbContext dbContext)
+        public GetAnimeListQueryHandler(IKistuRequestService requestService)
         {
             _requestService = requestService;
         }
 
-        public async Task<AnimeListKitsu> Handle(GetAnimeListQuery request, CancellationToken cancellationToken)
+        public async Task<AnimeList> Handle(GetAnimeListQuery request, CancellationToken cancellationToken)
         {
-            return await _requestService.GetListOfAnime();
+            return await _requestService.GetListOfAnimeAsync();
         }
     }
 }

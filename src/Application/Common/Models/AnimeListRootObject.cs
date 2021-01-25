@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Infrastructure.Services.KitsuApiService.Contracts
+namespace Application.Common.Models
 {
     public class Links 
     {
@@ -437,7 +437,7 @@ namespace Infrastructure.Services.KitsuApiService.Contracts
         public AnimeStaff AnimeStaff { get; set; }
     }
 
-    public class Anime
+    public class SingleAnimeData
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -455,10 +455,16 @@ namespace Infrastructure.Services.KitsuApiService.Contracts
         public Relationships Relationships { get; set; }
     }
 
-    public class AnimeList
+
+    public class SingleAnime
     {
         [JsonProperty("data")]
-        public List<Anime> Data { get; set; }
+        public SingleAnimeData SingleAnimeData { get; set; }
+    }
+    public class AnimeList
+    {      
+        [JsonProperty("data")]
+        public List<SingleAnimeData> AnimeListData { get; set; }
 
         [JsonProperty("meta")]
         public Meta Meta { get; set; }
