@@ -12,7 +12,7 @@ namespace Infrastructure.Persistence
     /// <summary>
     /// Application context
     /// </summary>
-    public class AniHelpDbContext : IdentityDbContext<ApplicationUser> , IAniHelpDbContext
+    public class AniHelpDbContext : IdentityDbContext<ApplicationUser>, IAniHelpDbContext
     {
         /// <summary>
         /// Constructor.

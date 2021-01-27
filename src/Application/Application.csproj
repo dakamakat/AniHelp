@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Account\Commands\LogInAccount\" />
     <Folder Include="Common\Constants\" />
   </ItemGroup>
 

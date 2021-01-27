@@ -1,6 +1,8 @@
 ﻿using Application.Common.Interfaces;
+using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Services.KitsuApiService.Contracts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,17 @@ namespace Infrastructure
                 options.UseSqlServer(
                     configuration.GetConnectionString("MSSQLConnection"),
                     b => b.MigrationsAssembly(typeof(AniHelpDbContext).Assembly.FullName)));
+
+
+            // ASP.NET Core Identity
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = false;
+            })
+            .AddEntityFrameworkStores<AniHelpDbContext>()
+            .AddDefaultTokenProviders();
+
+            services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddScoped<IAniHelpDbContext>(provider => provider.GetService<AniHelpDbContext>());
 
