@@ -23,6 +23,11 @@ namespace Infrastructure
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = false;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = true;
             })
             .AddEntityFrameworkStores<AniHelpDbContext>()
             .AddDefaultTokenProviders();
