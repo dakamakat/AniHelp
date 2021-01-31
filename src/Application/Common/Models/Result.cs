@@ -11,9 +11,18 @@ namespace Application.Common.Models
             Errors = errors.ToArray();
         }
 
+        internal Result(bool succeeded, string info)
+        {
+            Succeeded = succeeded;
+            Info = info;
+        }
+
+
         public bool Succeeded { get; set; }
 
         public string[] Errors { get; set; }
+
+        public string Info { get; set; }
 
         public static Result Success()
         {
@@ -23,6 +32,10 @@ namespace Application.Common.Models
         public static Result Failure(IEnumerable<string> errors)
         {
             return new Result(false, errors);
+        }
+        public static Result Failure(string errorInfo)
+        {
+            return new Result(false, errorInfo);
         }
     }
 }

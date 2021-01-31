@@ -1,11 +1,14 @@
 ﻿using Application.Common.Interfaces;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
+using Infrastructure.Services.JWTTokenService;
 using Infrastructure.Services.KitsuApiService.Contracts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure
 {
@@ -31,6 +34,36 @@ namespace Infrastructure
             })
             .AddEntityFrameworkStores<AniHelpDbContext>()
             .AddDefaultTokenProviders();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        //This option set false only for testing ir real app must be set true
+                        options.RequireHttpsMetadata = false;
+
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            // Specifies whether the publisher will be validated when validating the token
+                            ValidateIssuer = true,
+                            // A string representing the publisher
+                            ValidIssuer = AuthOptions.ISSUER,
+
+                            // Whether the consumer of the token will be validated
+                            ValidateAudience = true,
+
+                            // Token consumer setting
+                            ValidAudience = AuthOptions.AUDIENCE,
+
+                            // Whether the lifetime will be validated
+                            ValidateLifetime = true,
+
+                            // Setting security key
+                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+
+                            // Validate security key
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
 
             services.AddScoped<IIdentityService, IdentityService>();
 

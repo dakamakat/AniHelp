@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Application.AnimeLists.Queries;
 using Application.Common.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
